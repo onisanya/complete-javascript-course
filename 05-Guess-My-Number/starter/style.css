@@ -14,7 +14,7 @@ html {
 body {
   font-family: 'Press Start 2P', sans-serif;
   color: #eee;
-  background-color: #222;
+  background-color: #35443b;
   /* background-color: #60b347; */
 }
 
@@ -27,7 +27,7 @@ header {
 
 main {
   height: 65vh;
-  color: #eee;
+  color: #dfdfdf;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -70,8 +70,9 @@ h1 {
 }
 
 .between {
+  text-align: center;
   font-size: 1.4rem;
-  position: absolute;
+  position: relative;
   top: 2rem;
   right: 2rem;
 }
