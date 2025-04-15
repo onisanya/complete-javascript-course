@@ -45,3 +45,5 @@ const restaurant = {
     },
   },
 };
+
+console.log(restaurant?.hours?.thu.open);

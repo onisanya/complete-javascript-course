@@ -194,3 +194,18 @@ main {
   margin-top: 0;
   padding: 3px;
 }
+
+#container {
+  position: absolute;
+  align-items: center;
+  left: 50%;
+  transform: translate(-50%);
+  color: #444;
+  background: solid;
+  background-color: rgb(228, 161, 228);
+  border: 5px solid #444;
+  border-radius: 4rem;
+  width: 300px;
+  padding: 5px;
+  margin-top: 1rem;
+}
