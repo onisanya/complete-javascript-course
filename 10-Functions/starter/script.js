@@ -9,6 +9,7 @@ const poll = {
 const displayPoll = function (str) {
   const newDiv = document.createElement('div');
   newDiv.classList.add('poll-container');
+  newDiv.appendChild(document.createElement('br'));
   const newHeading = document.createElement('h2');
   newHeading.textContent = str;
   newDiv.appendChild(newHeading);

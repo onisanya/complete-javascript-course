@@ -44,7 +44,9 @@ nav {
 }
 
 .login__input {
-  border: none;
+  border: 1px solid #000;
+  color: #000;
+  border-radius: 6px;
   padding: 0.5rem 2rem;
   font-size: 1.6rem;
   font-family: inherit;
@@ -53,13 +55,13 @@ nav {
   border-radius: 10rem;
   margin-right: 1rem;
   color: inherit;
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   transition: all 0.3s;
 }
 
 .login__input:focus {
   outline: none;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
 }
 
 .login__input::placeholder {
