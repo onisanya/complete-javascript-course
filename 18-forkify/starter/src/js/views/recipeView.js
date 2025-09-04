@@ -3,6 +3,7 @@ import icons from 'url:../../img/icons.svg'; // Parcel 2
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
+  #errorMessage = "We're sorry, something went wrong. Please try again!";
 
   #generateMarkup() {
     return `
@@ -114,6 +115,42 @@ class RecipeView {
   }
   #clear() {
     this.#parentElement.innerHTML = '';
+  }
+  renderError(message = this.#errorMessage) {
+    const markup = `
+          <div class="error">
+            <div>
+              <svg>
+                <use href="src/img/icons.svg#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>${this.#errorMessage}</p>
+          </div>
+          `;
+
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  renderMessage(message) {
+    const markup = `
+          <div class="message">
+            <div>
+              <svg>
+                <use href="${icons}#icon-smile"></use>
+              </svg>
+            </div>
+            <p>${message.toString()}</p>
+          </div>
+          `;
+
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+  }
+
+  addHandlerRender(handler) {
+    console.log('addHandlerRender: ', handler);
+    ['hashchange', 'load'].forEach(e => window.addEventListener(e, handler));
   }
 
   renderSpinner() {

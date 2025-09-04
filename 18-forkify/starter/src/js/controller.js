@@ -1,6 +1,6 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
-import RecipeView from './views/recipeView.js';
+// import RecipeView from './views/recipeView.js';
 
 // depencies
 import 'core-js/actual';
@@ -23,19 +23,28 @@ const timeout = function (s) {
 console.log('Hello from controller.js');
 
 const controlRecipes = async function () {
-  const id = window.location.href.split('/').pop();
-  console.log(`href = ${window.location.href.split('/').pop()}`);
+  try {
+    const id = window.location.href.split('/').pop();
+    console.log(`href = ${window.location.href.split('/').pop()}`);
 
-  if (!id) return;
-  recipeView.renderSpinner();
+    if (!id) return;
 
-  await model.loadRecipe(id);
-  const { recipe } = model.state;
-  // reder recipe
-  recipeView.render(model.state.recipe);
+    recipeView.renderSpinner();
+    await model.loadRecipe(id);
+    const { recipe } = model.state;
+    // reder recipe
+    recipeView.render(model.state.recipe);
+  } catch (err) {
+    console.error(err);
+    recipeView.renderError(`⛔⛔⛔⛔  ${err}  ⛔⛔⛔⛔`);
+  }
 };
-
 // window.addEventListener('hashchange', controlRecipes());
 // window.addEventListener('load', controlRecipes());
+//['hashchange', 'load'].forEach(e => window.addEventListener(e, controlRecipes));
 
-['hashchange', 'load'].forEach(e => window.addEventListener(e, controlRecipes));
+const init = function () {
+  recipeView.addHandlerRender(controlRecipes);
+};
+
+init();

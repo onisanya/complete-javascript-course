@@ -31,5 +31,6 @@ export const loadRecipe = async function (id) {
     console.log('logging state.recipe: ', state.recipe);
   } catch (err) {
     console.error(`⛔⛔⛔⛔  ${err}  ⛔⛔⛔⛔`);
+    throw err;
   }
 };
