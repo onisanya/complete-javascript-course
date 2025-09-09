@@ -4,6 +4,7 @@ import {
   FORKIFY_API_URL,
   FORKIFY_GET_QUERY,
   FORKIFY_SEARCH_QUERY,
+  RES_PER_PAGE,
 } from './config.js';
 
 export const state = {
@@ -11,6 +12,8 @@ export const state = {
   search: {
     query: '',
     results: [],
+    page: 1,
+    resultsPerPage: 10,
   },
 };
 
@@ -66,4 +69,13 @@ export const loadSearchResults = async function (query) {
     console.error(`⛔⛔⛔⛔  ${err}  ⛔⛔⛔⛔`);
     throw err;
   }
+};
+
+export const getSearchResultsPage = function (page = state.search.page) {
+  const start = (page - 1) * RES_PER_PAGE; //0
+  const end = page * RES_PER_PAGE;
+  if (page >= 0 && page <= end) {
+    state.search.page = page;
+  }
+  return state.search.results.slice(start, end);
 };
