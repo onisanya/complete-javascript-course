@@ -35,11 +35,16 @@ const controlRecipes = async function () {
     console.log(`href = ${window.location.href.split('/').pop()}`);
     if (!id) return;
 
+    // update results view to mark selected search result
+    resultsView.update(model.getSearchResultsPage());
+
     recipeView.renderSpinner();
     await model.loadRecipe(id);
     const { recipe } = model.state;
     // reder recipe
     recipeView.render(model.state.recipe);
+
+    controlServings();
   } catch (err) {
     console.error(err);
     recipeView.renderError(`⛔⛔⛔⛔  ${err}  ⛔⛔⛔⛔`);
@@ -64,13 +69,20 @@ const init = function () {
   paginationView.addHandlerClick(controlPagination);
 };
 
+const controlServings = function (newServings) {
+  // update the recipe servings (in state)
+  // model.updateServings(8);
+  // update the recipe view
+  recipeView.render(model.state.recipe);
+};
+
 const controlSearchResults = async function () {
   try {
     resultsView.renderSpinner();
     const query = searchView.getQuery();
     if (!query) {
       console.log('<<<< No query submitted >>>>');
-      searchView.clearInput();
+      // searchView.clearInput();
       return;
     }
 
@@ -87,3 +99,5 @@ const controlSearchResults = async function () {
 };
 
 init();
+
+// fix bug on click on search result link

@@ -65,6 +65,7 @@ export const loadSearchResults = async function (query) {
         image: rcp.image_url,
       };
     });
+    state.search.page = 1;
   } catch (err) {
     console.error(`⛔⛔⛔⛔  ${err}  ⛔⛔⛔⛔`);
     throw err;
@@ -77,5 +78,16 @@ export const getSearchResultsPage = function (page = state.search.page) {
   if (page >= 0 && page <= end) {
     state.search.page = page;
   }
+  // const start = state.search.results.slice
+  // return state.search.results.slice(start, end);
   return state.search.results.slice(start, end);
+};
+
+export const updateServings = function (newServings) {
+  // Update the servings value
+  state.recipe.ingredients.foreach(ing => {
+    ing.quantity = (ing.quantity / state.recipe.servings) * newServings;
+  });
+  state.recipe.servings = newServings;
+  // Update recipe view
 };

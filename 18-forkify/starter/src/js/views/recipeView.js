@@ -116,6 +116,12 @@ class RecipeView extends View {
             `;
   }
 
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest;
+    });
+  }
+
   addHandlerRender(handler) {
     // console.log('addHandlerRender: ', handler);
     ['hashchange', 'load'].forEach(e => window.addEventListener(e, handler));
